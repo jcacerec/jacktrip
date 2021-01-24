@@ -200,7 +200,7 @@ void Settings::parseInput(int argc, char** argv)
                 argc, argv,
                 "n:N:H:sc:SC:o:B:P:U:q:r:b:ztlwjeJ:K:RTd:F:p:DvVhI:G:f:O:a:x:", longopts,
                 NULL))
-           != -1)
+           != -1) {
         switch (ch) {
         case 'n':  // Number of input and output channels
             //-------------------------------------------------------
@@ -251,26 +251,30 @@ void Settings::parseInput(int argc, char** argv)
             //-------------------------------------------------------
             mBindPortNum += atoi(optarg);
             mPeerPortNum += atoi(optarg);
-            if (gVerboseFlag)
+            if (gVerboseFlag) {
                 std::cout << "SETTINGS: argument parsed for TCP Bind Port: "
                           << mBindPortNum << std::endl;
-            if (gVerboseFlag)
+            }
+            if (gVerboseFlag) {
                 std::cout << "SETTINGS: argument parsed for TCP Peer Port: "
                           << mPeerPortNum << std::endl;
+            }
             break;
         case 'B':  // Bind Port
             //-------------------------------------------------------
             mBindPortNum = atoi(optarg);
-            if (gVerboseFlag)
+            if (gVerboseFlag) {
                 std::cout << "SETTINGS: argument parsed for TCP Bind Port: "
                           << mBindPortNum << std::endl;
+            }
             break;
         case 'P':  // Peer Port
             //-------------------------------------------------------
             mPeerPortNum = atoi(optarg);
-            if (gVerboseFlag)
+            if (gVerboseFlag) {
                 std::cout << "SETTINGS: argument parsed for TCP Peer Port: "
                           << mPeerPortNum << std::endl;
+            }
             break;
         case 'b':
             //-------------------------------------------------------
@@ -376,7 +380,7 @@ void Settings::parseInput(int argc, char** argv)
         case 'V':
             //-------------------------------------------------------
             gVerboseFlag = true;
-            if (gVerboseFlag) std::cout << "Verbose mode" << std::endl;
+            if (gVerboseFlag) { std::cout << "Verbose mode" << std::endl; }
             mEffects.setVerboseFlag(gVerboseFlag);
             break;
         case 'p':
@@ -534,6 +538,7 @@ void Settings::parseInput(int argc, char** argv)
             break;
         }
         }
+    }
 
     // Warn user if undefined options where entered
     //----------------------------------------------------------------------------
@@ -737,11 +742,13 @@ void Settings::printUsage()
 //*******************************************************************************
 UdpHubListener* Settings::getConfiguredHubServer()
 {
-    if ((mBindPortNum < gBindPortLow) || (mBindPortNum > gBindPortHigh))
+    if ((mBindPortNum < gBindPortLow) || (mBindPortNum > gBindPortHigh)) {
         std::cout << "BindPort: " << mBindPortNum << " outside range" << std::endl;
+    }
 
-    if (gVerboseFlag)
+    if (gVerboseFlag) {
         std::cout << "JackTrip HUB SERVER TCP Bind Port: " << mBindPortNum << std::endl;
+    }
     UdpHubListener* udpHub = new UdpHubListener(mBindPortNum, mServerUdpPortNum);
     //udpHub->setSettings(this);
 #ifdef WAIR  // WAIR
@@ -781,8 +788,9 @@ JackTrip* Settings::getConfiguredJackTrip()
         std::cout << "Settings:startJackTrip mNumNetRevChans = " << mNumNetRevChans
                   << std::endl;
 #endif  // endwhere
-    if (gVerboseFlag)
+    if (gVerboseFlag) {
         std::cout << "Settings:startJackTrip before new JackTrip" << std::endl;
+    }
     JackTrip* jackTrip = new JackTrip(
         mJackTripMode, mDataProtocol, mNumChans,
 #ifdef WAIR  // wair
