@@ -534,10 +534,10 @@ void JackTrip::completeConnection()
     if (gVerboseFlag)
         std::cout << "  JackTrip:startProcess before mAudioInterface->startProcess"
                   << std::endl;
-    for (auto & i : mProcessPluginsFromNetwork) {
+    for (auto& i : mProcessPluginsFromNetwork) {
         mAudioInterface->appendProcessPluginFromNetwork(i);
     }
-    for (auto & i : mProcessPluginsToNetwork) {
+    for (auto& i : mProcessPluginsToNetwork) {
         mAudioInterface->appendProcessPluginToNetwork(i);
     }
     mAudioInterface->initPlugins();   // mSampleRate known now, which plugins require
@@ -549,7 +549,8 @@ void JackTrip::completeConnection()
     if (mIOStatTimeout > 0) {
         cout << "STATS" << mIOStatTimeout << endl;
         if (!mIOStatStream.isNull()) {
-            mIOStatLogStream.rdbuf((reinterpret_cast<std::ostream*>(mIOStatStream.data()))->rdbuf());
+            mIOStatLogStream.rdbuf(
+                (reinterpret_cast<std::ostream*>(mIOStatStream.data()))->rdbuf());
         }
         QTimer* timer = new QTimer(this);
         connect(timer, SIGNAL(timeout()), this, SLOT(onStatTimer()));
