@@ -202,8 +202,7 @@ void UdpHubListener::receivedClientInfo(QTcpSocket* clientConnection)
     // before re-starting the connection
 
     if (id == -1) {
-        int id_remove;
-        id_remove = getPoolID(PeerAddress.toString(), peer_udp_port);
+        int id_remove = getPoolID(PeerAddress.toString(), peer_udp_port);
         // stop the thread
         mJTWorkers->at(id_remove)->stopThread();
         // block until the thread has been removed from the pool
@@ -347,8 +346,8 @@ uint16_t UdpHubListener::readClientUdpPort(QTcpSocket* clientConnection,
     if (gVerboseFlag) { cout << "Ready To Read From Client!\n"; }
     // Read UDP Port Number from Server
     // --------------------------------
-    uint16_t udp_port;
-    qint64 size = sizeof(udp_port);
+    uint16_t udp_port = 0;
+    qint64 size       = sizeof(udp_port);
     char port_buf[size];
     clientConnection->read(port_buf, size);
     std::memcpy(&udp_port, port_buf, size);
