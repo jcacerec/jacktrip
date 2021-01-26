@@ -55,10 +55,8 @@ class ProcessPlugin : public QThread
    public:
     /// \brief The Class Constructor
     ProcessPlugin() = default;
-    ;
     /// \brief The Class Destructor
     virtual ~ProcessPlugin() = default;
-    ;
 
     /// \brief Return Number of Input Channels
     virtual int getNumInputs() = 0;
