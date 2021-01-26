@@ -146,7 +146,6 @@ void setRealtimeProcessPriority()
 #ifdef __UBUNTU__
     priority = 95;  // anything higher is silently ignored by Ubuntu 18.04
 #endif
-    priority = 3;
 
     struct sched_param sp = {.sched_priority = priority};
 
