@@ -204,7 +204,7 @@ class JackTrip : public QObject
     {
         mPacketHeaderType = PacketHeaderType;
         delete mPacketHeader;
-        mPacketHeader = NULL;
+        mPacketHeader = nullptr;
         createHeader(mPacketHeaderType);
     }
     /// \brief Sets (override) Buffer Queue Length Mode after construction
