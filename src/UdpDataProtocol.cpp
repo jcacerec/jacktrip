@@ -75,8 +75,8 @@ UdpDataProtocol::UdpDataProtocol(JackTrip* jacktrip, const runModeT runmode,
     , mBindPort(bind_port)
     , mPeerPort(peer_port)
     , mRunMode(runmode)
-    , mAudioPacket(NULL)
-    , mFullPacket(NULL)
+    , mAudioPacket(nullptr)
+    , mFullPacket(nullptr)
     , mUdpRedundancyFactor(udp_redundancy_factor)
     , mControlPacketSize(63)
     , mStopSignalSent(false)
@@ -481,7 +481,7 @@ void UdpDataProtocol::run()
     // (Algorithm explained at the end of this file)
     // ---------------------------------------------
     size_t full_redundant_packet_size = full_packet_size * mUdpRedundancyFactor;
-    int8_t* full_redundant_packet     = NULL;
+    int8_t* full_redundant_packet     = nullptr;
 
     // Set realtime priority (function in jacktrip_globals.h)
     if (gVerboseFlag) {
@@ -681,9 +681,9 @@ void UdpDataProtocol::run()
     }
     }
 
-    if (NULL != full_redundant_packet) {
+    if (nullptr != full_redundant_packet) {
         delete[] full_redundant_packet;
-        full_redundant_packet = NULL;
+        full_redundant_packet = nullptr;
     }
 }
 

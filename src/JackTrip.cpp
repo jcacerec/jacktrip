@@ -100,14 +100,14 @@ JackTrip::JackTrip(jacktripModeT JacktripMode, dataProtocolT DataProtocolType,
     , mAudioBufferSize(gDefaultBufferSizeInSamples)
     , mAudioBitResolution(AudioBitResolution)
     , mLoopBack(false)
-    , mDataProtocolSender(NULL)
-    , mDataProtocolReceiver(NULL)
-    , mAudioInterface(NULL)
-    , mPacketHeader(NULL)
+    , mDataProtocolSender(nullptr)
+    , mDataProtocolReceiver(nullptr)
+    , mAudioInterface(nullptr)
+    , mPacketHeader(nullptr)
     , mUnderRunMode(UnderRunMode)
     , mStopOnTimeout(false)
-    , mSendRingBuffer(NULL)
-    , mReceiveRingBuffer(NULL)
+    , mSendRingBuffer(nullptr)
+    , mReceiveRingBuffer(nullptr)
     , mReceiverBindPort(receiver_bind_port)
     , mSenderPeerPort(sender_peer_port)
     , mSenderBindPort(sender_bind_port)
@@ -160,7 +160,7 @@ void JackTrip::setupAudio(
 {
     // Check if mAudioInterface has already been created or not
     if (mAudioInterface
-        != NULL) {  // if it has been created, disconnet it from JACK and delete it
+        != nullptr) {  // if it has been created, disconnet it from JACK and delete it
         cout << "WARINING: JackAudio interface was setup already:" << endl;
         cout << "It will be erased and setup again." << endl;
         cout << gPrintSeparator << endl;
@@ -268,10 +268,10 @@ void JackTrip::setupAudio(
 void JackTrip::closeAudio()
 {
     //mAudioInterface->close();
-    if (mAudioInterface != NULL) {
+    if (mAudioInterface != nullptr) {
         mAudioInterface->stopProcess();
         delete mAudioInterface;
-        mAudioInterface = NULL;
+        mAudioInterface = nullptr;
     }
 }
 
