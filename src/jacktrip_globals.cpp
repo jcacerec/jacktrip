@@ -59,7 +59,7 @@
 
 // Enables time-contraint policy and priority suitable for low-latency,
 // glitch-resistant audio.
-void setRealtimeProcessPriority()
+void setRealtimeProcessPriority(int)
 {
     // Increase thread priority to real-time.
 
@@ -140,9 +140,9 @@ void setRealtimeProcessPriority()
 
 #if defined(__LINUX__)
 //*******************************************************************************
-void setRealtimeProcessPriority()
+void setRealtimeProcessPriority(int priority)
 {
-    const struct sched_param sp = {.sched_priority = 50};
+    const struct sched_param sp = {.sched_priority = priority};
 
     if (sched_setscheduler(0, SCHED_FIFO, &sp) == -1) {
         std::cerr << "Failed to set the scheduler policy and priority." << std::endl;
@@ -152,7 +152,7 @@ void setRealtimeProcessPriority()
 #endif  //__LINUX__
 
 #if defined(__WIN_32__)
-void setRealtimeProcessPriority()
+void setRealtimeProcessPriority(int)
 {
     if (SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS) == 0) {
         std::cerr << "Failed to set process priority class." << std::endl;

@@ -490,7 +490,7 @@ void UdpDataProtocol::run()
     }
     //std::cout << "Experimental version -- not using setRealtimeProcessPriority()" << std::endl;
     // Anton Runov: making setRealtimeProcessPriority optional
-    if (mUseRtPriority) { setRealtimeProcessPriority(); }
+    if (mRtPriority != 0) { setRealtimeProcessPriority(mRtPriority); }
 
 
     // clang-format off

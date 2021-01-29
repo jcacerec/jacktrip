@@ -634,6 +634,7 @@ class JackTrip : public QObject
     double mSimulatedJitterRate;
     double mSimulatedDelayRel;
     bool mUseRtUdpPriority;
+    int mRtAudioPriority;
 
     AudioTester* mAudioTesterP;
 };

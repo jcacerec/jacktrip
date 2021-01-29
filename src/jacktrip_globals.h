@@ -129,7 +129,7 @@ const int gMaxRemoteNameLength       = 64;
 //*******************************************************************************
 /// \name Global Functions
 
-void setRealtimeProcessPriority();
+void setRealtimeProcessPriority(int priority);
 
 //*******************************************************************************
 /// \name JackTrip Server parameters
