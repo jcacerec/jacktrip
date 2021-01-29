@@ -41,6 +41,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdexcept>
+#include <jack/thread.h>
 
 #include "JackTrip.h"
 #include "jacktrip_globals.h"
@@ -356,6 +357,11 @@ void JackAudioInterface::connectDefaultPorts()
         std::free(ports);
     }
 }
+
+int JackAudioInterface::getRtAudioPriority() const
+{
+    return jack_client_real_time_priority(mClient);
+};
 
 // OLD CODE (some moved to parent class AudioInterface.cpp)
 // ==============================================================================

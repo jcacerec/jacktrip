@@ -120,6 +120,9 @@ class JackAudioInterface : public AudioInterface
     }
     /// \brief Get size of each audio per channel, in bytes
     virtual size_t getSizeInBytesPerChannel() const;
+
+    /// \brief Get jack client realtime priority
+    int getRtAudioPriority() const;
     //------------------------------------------------------------------
 
    private:
@@ -194,7 +197,6 @@ class JackAudioInterface : public AudioInterface
     JackTrip* mJackTrip;                      ///< JackTrip mediator class
     static QMutex sJackMutex;  ///< Mutex to make thread safe jack functions that are not
 
-    friend JackTrip;
 };
 
 #endif

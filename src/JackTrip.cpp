@@ -46,7 +46,6 @@
 #include "RtAudioInterface.h"
 #endif
 
-#include <jack/thread.h>
 
 #include <QDateTime>
 #include <QHostAddress>
@@ -219,9 +218,10 @@ void JackTrip::setupAudio(
         mAudioBufferSize = mAudioInterface->getBufferSizeInSamples();
 
         // Set the rt priority jack clients usually get
-        if (mUseRtUdpPriority)
-            mRtAudioPriority = jack_client_real_time_priority(
-                static_cast<JackAudioInterface*>(mAudioInterface)->mClient);
+        if (mUseRtUdpPriority) {
+            mRtAudioPriority =
+                static_cast<JackAudioInterface*>(mAudioInterface)->getRtAudioPriority();
+        }
 
 #endif  //__NON_JACK__
 #ifdef __NO_JACK__  /// \todo FIX THIS REPETITION OF CODE
