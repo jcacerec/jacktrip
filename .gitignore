@@ -4,3 +4,6 @@
 
 # build directory
 builddir/
+
+# clangd cache
+.cache
