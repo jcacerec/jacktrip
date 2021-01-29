@@ -224,6 +224,17 @@ void JackTrip::setupAudio(
                 static_cast<JackAudioInterface*>(mAudioInterface)->mClient);
 
 #endif  //__NON_JACK__
+#ifdef __NO_JACK__  /// \todo FIX THIS REPETITION OF CODE
+#ifdef __RT_AUDIO__
+        cout << "Warning: using non jack version, RtAudio will be used instead" << endl;
+        mAudioInterface =
+            new RtAudioInterface(this, mNumChans, mNumChans, mAudioBitResolution);
+        mAudioInterface->setSampleRate(mSampleRate);
+        mAudioInterface->setDeviceID(mDeviceID);
+        mAudioInterface->setBufferSizeInSamples(mAudioBufferSize);
+        mAudioInterface->setup();
+#endif
+#endif
     } else if (mAudiointerfaceMode == JackTrip::RTAUDIO) {
 #ifdef __RT_AUDIO__
         mAudioInterface =
