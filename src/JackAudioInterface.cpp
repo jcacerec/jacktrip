@@ -37,11 +37,12 @@
 
 #include "JackAudioInterface.h"
 
+#include <jack/thread.h>
+
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
 #include <stdexcept>
-#include <jack/thread.h>
 
 #include "JackTrip.h"
 #include "jacktrip_globals.h"
